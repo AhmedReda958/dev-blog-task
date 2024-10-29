@@ -2,19 +2,20 @@
 
 import BlogCard, { BlogCardSkeleton } from "@/components/BlogCard";
 import { Article } from "@/types";
-import { RotateCcw } from "lucide-react";
+import { ArrowBigDown, ArrowDown, RotateCcw } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 export default function BlogPage() {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [page, setPage] = useState(1);
 
   const fetchArticles = useCallback(() => {
     setLoading(true);
-    fetch("https://dev.to/api/articles")
+    fetch("https://dev.to/api/articles?page=" + page)
       .then((response) => response.json())
       .then((data) => {
-        setArticles(data);
+        setArticles((prevArticles) => [...prevArticles, ...data]);
         setLoading(false);
       })
       .catch((error) => {
@@ -22,7 +23,12 @@ export default function BlogPage() {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  }, [page]);
+
+  const loadMoreArticles = () => {
+    setPage((prevPage) => prevPage + 1);
+    fetchArticles();
+  };
 
   useEffect(() => {
     fetchArticles();
@@ -56,11 +62,23 @@ export default function BlogPage() {
         )}
 
         {!loading && !error && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
-            {articles.map((article: Article) => (
-              <BlogCard article={article} key={article.id} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+              {articles.map((article: Article) => (
+                <BlogCard article={article} key={article.id} />
+              ))}
+            </div>
+            <button
+              onClick={loadMoreArticles}
+              className="block mx-auto mt-20 w-fit px-6 py-2 text text-primary bg-primary-light rounded group shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
+            >
+              <ArrowDown
+                size={16}
+                className="inline-block mr-2 group-hover:animate-bounce"
+              />
+              Load more
+            </button>
+          </>
         )}
       </div>
     </div>
