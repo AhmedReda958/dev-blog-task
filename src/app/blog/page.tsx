@@ -2,7 +2,7 @@
 
 import BlogCard, { BlogCardSkeleton } from "@/components/BlogCard";
 import { Article } from "@/types";
-import { ArrowBigDown, ArrowDown, RotateCcw } from "lucide-react";
+import { ArrowDown, RotateCcw } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 export default function BlogPage() {
   const [articles, setArticles] = useState<Article[]>([]);
