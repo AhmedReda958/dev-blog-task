@@ -12,6 +12,7 @@ export default function BlogCard({ article }: Readonly<{ article: Article }>) {
       <Image
         src={article.social_image}
         alt={article.title}
+        className="w-full"
         height={240}
         width={336}
       />
