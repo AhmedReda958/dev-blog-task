@@ -49,3 +49,25 @@ export default function BlogCard({ article }: Readonly<{ article: Article }>) {
     </div>
   );
 }
+
+export function BlogCardSkeleton() {
+  return (
+    <div className="max-h-[530px] md:max-h-[580px] flex flex-col justify-between bg-background shadow-card p-6 cursor-pointer animate-pulse">
+      <div className="bg-gray-300 h-[240px] w-full animate-pulse animation-delay-100"></div>
+      <div className="flex-1 mt-7">
+        <div className="bg-gray-300 h-4 w-1/4 mb-3 animate-pulse animation-delay-200"></div>
+        <div className="bg-gray-300 h-8 w-full mb-3 animate-pulse animation-delay-300"></div>
+        <div className="bg-gray-300 h-4 w-full mb-3 animate-pulse animation-delay-400"></div>
+        <div className="bg-gray-300 h-4 w-full mb-3 animate-pulse animation-delay-500"></div>
+        <div className="bg-gray-300 h-4 w-3/4 animate-pulse animation-delay-600"></div>
+      </div>
+      <div className="flex items-center mt-5">
+        <div className="bg-gray-300 h-10 w-10 rounded-full animate-pulse animation-delay-700"></div>
+        <div className="ml-3 flex-1">
+          <div className="bg-gray-300 h-4 w-1/2 mb-1 animate-pulse animation-delay-800"></div>
+          <div className="bg-gray-300 h-3 w-1/3 animate-pulse animation-delay-900"></div>
+        </div>
+      </div>
+    </div>
+  );
+}

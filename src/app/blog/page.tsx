@@ -1,6 +1,6 @@
 "use client";
 
-import BlogCard from "@/components/BlogCard";
+import BlogCard, { BlogCardSkeleton } from "@/components/BlogCard";
 import { Article } from "@/types";
 import { useEffect, useState } from "react";
 export default function BlogPage() {
@@ -24,10 +24,16 @@ export default function BlogPage() {
   return (
     <div className=" bg-[url('/bg.svg')] bg-contain bg-right-top bg-no-repeat py-16 md:py-24">
       <div className="container mx-auto ">
-        {loading && <p>Loading...</p>}
+        {loading && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <BlogCardSkeleton key={index} />
+            ))}
+          </div>
+        )}
         {error && <p>Error: {error.message}</p>}
         {!loading && !error && (
-          <div className="grid grid-cols-4 gap-8 ">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
             {articles.map((article: Article) => (
               <BlogCard article={article} key={article.id} />
             ))}
