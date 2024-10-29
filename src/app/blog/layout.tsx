@@ -6,8 +6,8 @@ export default function BlogLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className=" min-h-screen bg-[url('/bg.svg')] bg-[#F9F5FF] bg-contain bg-center bg-no-repeat ">
-      <header className="container flex flex-col items-center gap-6 md:gap-8 py-16 md:py-24 text-primary text-center">
+    <main className=" min-h-screen bg-[#F9F5FF] ">
+      <header className="container flex flex-col items-center gap-6 md:gap-8 pt-16 md:pt-24 text-primary text-center">
         <div className="bg-primary-light rounded-2xl px-4 py-1 text-sm">
           Our Blog
         </div>
