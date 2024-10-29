@@ -1,11 +1,12 @@
 "use client";
 
 import BlogCard from "@/components/BlogCard";
+import { Article } from "@/types";
 import { useEffect, useState } from "react";
 export default function BlogPage() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     fetch("https://dev.to/api/articles")
@@ -27,7 +28,7 @@ export default function BlogPage() {
         {error && <p>Error: {error.message}</p>}
         {!loading && !error && (
           <div className="grid grid-cols-4 gap-8 ">
-            {articles.map((article) => (
+            {articles.map((article: Article) => (
               <BlogCard article={article} key={article.id} />
             ))}
           </div>

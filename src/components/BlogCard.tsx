@@ -1,8 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import type { Article } from "@/types";
 
-export default function BlogCard({ article }) {
+export default function BlogCard({ article }: Readonly<{ article: Article }>) {
   return (
     <div
       className="max-h-[530px] md:max-h-[580px] flex flex-col justify-between bg-background shadow-card hover:-translate-y-2 transition-all will-change-transform duration-300 ease-in-out p-6 cursor-pointer"
